@@ -31,7 +31,7 @@ window.TOUR_CONFIG = {
     aboutUrl: "https://www.gcfpantry.org/about",
     donateUrl: "https://www.gcfpantry.org/donate",
     // Local copy first (save their logo as assets/gcfp-logo.png), then their hosted copy.
-    logo: "assets/gcfp-logo.png",
+    logo: "GC-Food-Pantry-logo.webp",
     logoFallback: "https://images.squarespace-cdn.com/content/v1/6827a0bccf1ecf43869d1a7b/93524bb2-21d5-461c-ac94-294f60c55cea/GC+Food+Pantry+logo.png?format=750w",
     blurb: "Since 2007 the Greene County Food Pantry has fought hunger here at home, providing about 600 local families each month with 40 to 50 pounds of groceries. More than half of the neighbors they serve are seniors or children."
   },
