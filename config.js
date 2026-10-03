@@ -37,7 +37,7 @@ window.TOUR_CONFIG = {
   },
 
   // ---- Ticket artwork (save your ticket graphic as assets/ticket-art.jpg) ----
-  ticketArt: "assets/ticket-art.jpg",
+  ticketArt: "ticket-art.jpg",
 
   // ---- Optional contact line in the footer ----
   contactLine: "Questions on tour day? Ask any hostess at the door."
