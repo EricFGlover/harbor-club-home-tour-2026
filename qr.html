@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ticket QR Code</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&family=Figtree:wght@400;600&display=swap">
+<style>
+  :root { --pine:#173a2e; --red:#9b2335; --gold:#b8924a; --bg:#f5f6f2; --ink:#1b2521; --muted:#5a6862; --line:#dde2da; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Figtree",system-ui,sans-serif; }
+  .wrap { max-width:640px; margin:0 auto; padding:40px 16px 60px; }
+  h1 { font-family:"Bodoni Moda",Georgia,serif; font-style:italic; font-weight:500; font-size:2.2rem; margin:0 0 6px; color:var(--pine); }
+  p { color:var(--muted); line-height:1.55; }
+  label { display:block; font-weight:600; margin:22px 0 6px; }
+  input { width:100%; box-sizing:border-box; font:inherit; padding:12px 14px; border:1px solid var(--line); border-radius:10px; }
+  .card { margin-top:22px; background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px; display:grid; place-items:center; gap:14px; }
+  #qr { background:#fff; padding:18px; }
+  #qr img, #qr canvas { width:260px !important; height:260px !important; image-rendering:pixelated; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .btn { font:inherit; font-weight:600; border:0; border-radius:999px; padding:11px 18px; cursor:pointer; text-decoration:none; }
+  .red { background:var(--red); color:#fff; } .line { background:#fff; color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+  small { color:var(--muted); }
+  ul { color:var(--muted); line-height:1.6; padding-left:20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ticket QR code</h1>
+  <p>This code opens the live home tour page. Because the page itself updates, you only print this code once, even if homes change on tour day.</p>
+
+  <label for="url">Link the code should open</label>
+  <input id="url" type="url" spellcheck="false">
+
+  <div class="card">
+    <div id="qr" aria-label="QR code"></div>
+    <small id="shown"></small>
+    <div class="row">
+      <button class="btn red" id="png" type="button">Download PNG (print quality)</button>
+      <button class="btn line" id="svg" type="button">Download SVG (for the printer)</button>
+    </div>
+  </div>
+
+  <ul>
+    <li>Print it at least 1 inch (2.5 cm) square. 1.25 inches is safer for older phones.</li>
+    <li>Keep dark ink on a light background with a quiet margin around it.</li>
+    <li>Scan the printed proof with an iPhone and an Android phone before the full run.</li>
+  </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function () {
+  var input = document.getElementById("url");
+  input.value = location.origin + "/";
+  var current = null;
+
+  function build() {
+    var text = input.value.trim() || location.origin + "/";
+    var qr = qrcode(0, "H"); qr.addData(text); qr.make();
+    current = qr;
+    var n = qr.getModuleCount(), cell = 8, margin = 4 * cell, size = n * cell + margin * 2;
+    var c = document.createElement("canvas"); c.width = size; c.height = size;
+    var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, size, size); x.fillStyle = "#173a2e";
+    for (var r = 0; r < n; r++) for (var k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(margin + k * cell, margin + r * cell, cell, cell);
+    var box = document.getElementById("qr"); box.innerHTML = ""; box.appendChild(c);
+    document.getElementById("shown").textContent = text;
+  }
+
+  function save(name, href) { var a = document.createElement("a"); a.href = href; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+
+  document.getElementById("png").onclick = function () {
+    var qr = current, n = qr.getModuleCount(), cell = 40, m = 4 * cell, s = n * cell + m * 2;
+    var c = document.createElement("canvas"); c.width = s; c.height = s;
+    var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, s, s); x.fillStyle = "#000";
+    for (var r = 0; r < n; r++) for (var k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(m + k * cell, m + r * cell, cell, cell);
+    save("home-tour-qr.png", c.toDataURL("image/png"));
+  };
+  document.getElementById("svg").onclick = function () {
+    var qr = current, n = qr.getModuleCount(), m = 4, s = n + m * 2, d = "";
+    for (var r = 0; r < n; r++) for (var k = 0; k < n; k++) if (qr.isDark(r, k)) d += "M" + (k + m) + " " + (r + m) + "h1v1h-1z";
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + s + " " + s + '" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>';
+    save("home-tour-qr.svg", "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg));
+  };
+  input.addEventListener("input", build);
+  build();
+})();
+</script>
+</body>
+</html>

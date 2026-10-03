@@ -1,0 +1,65 @@
+[
+  {
+    "number": 1,
+    "name": "Patti White & Bill Kronemeyer",
+    "address": "1331 Carriage Ridge Drive, Greensboro, GA 30642",
+    "lat": 33.486018,
+    "lng": -83.216286,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 2,
+    "name": "Wendy & Kirk Pettinger",
+    "address": "2181 Osprey Poynte, Greensboro, GA 30642",
+    "lat": 33.467017,
+    "lng": -83.209093,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 3,
+    "name": "Joyce Dove Woodside",
+    "address": "1210 Winged Foot Drive, Greensboro, GA 30642",
+    "lat": 33.473484,
+    "lng": -83.202063,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 4,
+    "name": "Julie Menke Gill & Jim Gill",
+    "address": "1080 Inverness Drive, Greensboro, GA 30642",
+    "lat": 33.481583,
+    "lng": -83.208518,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 5,
+    "name": "Hanna & Sammy Fowler",
+    "address": "1331 Lighthouse Circle, Greensboro, GA 30642",
+    "lat": 33.46278,
+    "lng": -83.201402,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 6,
+    "name": "Tina & Eric Glover",
+    "address": "1410 Lighthouse Circle, Greensboro, GA 30642",
+    "lat": 33.45975,
+    "lng": -83.201486,
+    "note": "",
+    "show": "yes"
+  },
+  {
+    "number": 7,
+    "name": "Pam & Don Laurvick",
+    "address": "1531 Lighthouse Circle, Greensboro, GA 30642",
+    "lat": 33.458781,
+    "lng": -83.200612,
+    "note": "",
+    "show": "yes"
+  }
+]
