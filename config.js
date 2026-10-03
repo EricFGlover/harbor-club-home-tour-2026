@@ -18,7 +18,7 @@ window.TOUR_CONFIG = {
   // Option A (recommended): paste your published Google Sheet CSV link here.
   // Edits to the sheet show up on the site within about 5 minutes. No redeploy.
   // Leave as "" to use homes.json instead (Option B).
-  sheetCsvUrl: "",
+  sheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRW9g6dprOpDN1WTWLuaVPg2zXUBnC39j_7NKnkoUTPm_YMFk6HBq0oJhvoeosXwzbikEyr53heB-Ne/pub?gid=1698211163&single=true&output=csv",
 
   // Town/state appended when looking up an address that has no lat/lng.
   defaultCityState: "Greensboro, GA 30642",
