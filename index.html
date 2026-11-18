@@ -609,13 +609,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: s
     btn.disabled = true; msg.textContent = "Finding your location…";
     function finish(start, note) {
       var idx = homes.map(function (h, i) { return h.lat != null ? i : -1; }).filter(function (i) { return i > -1; });
-      var order = bestOrder(idx.map(function (i) { return homes[i]; }), start);
-      routeOrder = order.map(function (k) { return idx[k]; });
-      origin = start;
-      render(); showRoute(); setActive(homes[routeOrder[0]].num, { pan: false });
-      var miles = 0, pts = (start ? [start] : []).concat(routeOrder.map(function (i) { return homes[i]; }));
-      for (var q = 1; q < pts.length; q++) miles += hav(pts[q - 1], pts[q]);
-      msg.textContent = note || ("Best order: " + routeOrder.map(function (i) { return homes[i].num; }).join(" → ") + ". About " + (miles * 1.3).toFixed(1) + " miles of driving.");
+     routeOrder = idx;
+origin = start;
+render(); showRoute(); setActive(homes[routeOrder[0]].num, { pan: false });
+msg.textContent = note || ("Tour order: " + routeOrder.map(function (i) { return homes[i].num; }).join(" → ") + ".");
       btn.disabled = false;
       btn.lastChild.nodeValue = " Update from my location";
     }
